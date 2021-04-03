@@ -86,7 +86,7 @@ Helios is a Philips Hue lighting controller and programming app designed for the
 <img src="https://github.com/Codepath-Team-Hyperion/Helios/blob/9194fff8b964bcecb6a5e94d1e35401d950cada6/wireframe.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="digitalWiredFrame.gif"><br>
+<img src="digitalWiredFrame.png"><br>
 
 ### [BONUS] Interactive Prototype
 
