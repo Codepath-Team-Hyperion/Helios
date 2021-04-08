@@ -3,13 +3,15 @@ package com.hyperion.helios;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.Toast;
+//TODO need to click on login button to go to login screen from main
 public class MainActivity extends AppCompatActivity {
 
     Button btnDiscover;
@@ -20,13 +22,24 @@ public class MainActivity extends AppCompatActivity {
     NsdManager.DiscoveryListener discoveryListener;
     NsdManager.RegistrationListener registrationListener;
     Context context;
+    private Button eLoginFromMain;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nsdManager = (NsdManager) getSystemService(Context.NSD_SERVICE);
+        eLoginFromMain = findViewById(R.id.btnLoginFromMain);
 
+
+        eLoginFromMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"You click the Login button",Toast.LENGTH_SHORT).show();
+                goLogin();
+            }
+        });
 
         btnDiscover = findViewById(R.id.btnDiscover);
         btnDiscover.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +155,15 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
+
+
+    }
+
+    private void goLogin() {
+        //Toast.makeText(MainActivity.this,"Entering goLogin function", Toast.LENGTH_SHORT).show();
+        Intent k = new Intent(this,LoginActivity.class);
+        startActivity(k);
+        finish();
     }
 
 }
