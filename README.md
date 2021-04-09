@@ -86,15 +86,68 @@ Helios is a Philips Hue lighting controller and programming app designed for the
 <img src="https://github.com/Codepath-Team-Hyperion/Helios/blob/9194fff8b964bcecb6a5e94d1e35401d950cada6/wireframe.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="digitalWiredFrame.png"><br>
+https://www.figma.com/file/WFAV31QxlxTtGIfSvJjiT0/Untitled?node-id=3%3A155
+https://github.com/Codepath-Team-Hyperion/Helios/blob/main/digitalWiredFrame.png
+![](https://i.imgur.com/pHOipIv.png)
 
-### [BONUS] Interactive Prototype
+### [BONUS] Interactive Prototype   
 
-## Schema 
+## Schema
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+#### Model: User
+| Property | Type |  Description |
+| -------- | -------- | -------- |
+| Text     | Text     | Text     |
+
+#### Model: Fixture
+| Property | Type |  Description |
+| -------- | -------- | -------- |
+| uniqueid     | string     | unique identifyer for fixture    |
+| on     | boolean     | current state of fixture
+| bri     | uint    | current brightness (1-254)
+|hue | uint16 | current colour (0-65535)
+|sat | uint8 | current saturation (0-254)
+|effect | string | current effect
+
+#### Model: Group
+| Property | Type |  Description |
+| -------- | -------- | -------- |
+|name     | string     | name of group
+|lights | string array | fixtures in the group
+|on | boolean| state of group
+|bri|
+|hue|
+|sat|
+|effect|
+
+#### Model: Scenes
+| Property | Type |  Description |
+| -------- | -------- | -------- |
+
+
+
+#### Model: Effect
+| Property | Type |  Description |
+| -------- | -------- | -------- |
+| Text     | Text     | Text     |
+
 ### Networking
+only using existing APIs
+
+[OPTIONAL:] Existing API Endpoints
+
+Philips Hue API
+* Base URL - /api/
+
+|HTTP Verb | Endpoint |Description
+| -------- | -------- | -------- |
+| GET | /<username>/lights | Get all lights |
+|GET |/<username>/lights/<id> | Get light attribute and state
+|PUT | /<username>/lights/<id> | Set fixture attribute (rename)
+|PUT| /<username>/lights/<id>/state | Set fixture state (on/off, hue, effects)
+
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
