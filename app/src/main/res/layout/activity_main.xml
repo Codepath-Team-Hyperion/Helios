@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PHMyApplicationActivity" >
+    tools:context=".MyApplicationActivity" >
 
     <TextView
         android:id="@+id/textView1"
@@ -22,5 +22,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/btn_random" android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+    <fragment
+        android:id="@+id/frgRandom"
+        android:name="com.philips.lighting.fragments.RandomFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvInfoMain"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp" />
+
+    <TextView
+        android:id="@+id/tvInfoMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonRand"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="6dp"
+        android:text="This is the main activity, fragment below this line" />
+
 
 </RelativeLayout>
