@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
@@ -26,7 +28,8 @@ import com.philips.lighting.model.PHLightState;
  * @author SteveyO
  *
  */
-public class MyApplicationActivity extends Activity {
+
+public class MyApplicationActivity extends AppCompatActivity {
     private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
     public static final String TAG = "QuickStart";

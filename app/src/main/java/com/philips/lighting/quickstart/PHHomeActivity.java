@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.philips.lighting.data.AccessPointListAdapter;
@@ -51,12 +52,22 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bridgelistlinear);
+        Button btnDebug;
+        btnDebug = (Button) findViewById(R.id.btnDebug);
+        btnDebug.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startMainActivity();
+            }
+
+        });
         
         // Gets an instance of the Hue SDK.
         phHueSDK = PHHueSDK.create();
         
         // Set the Device Name (name of your app). This will be stored in your bridge whitelist entry.
-        phHueSDK.setAppName("QuickStartApp");
+        phHueSDK.setAppName("Helios");
         phHueSDK.setDeviceName(android.os.Build.MODEL);
         
         // Register the PHSDKListener to receive callbacks from the bridge.
@@ -278,7 +289,9 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+            //intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
         startActivity(intent);
     }
     
