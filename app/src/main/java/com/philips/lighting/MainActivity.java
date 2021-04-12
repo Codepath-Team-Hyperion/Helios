@@ -28,7 +28,7 @@ import com.philips.lighting.quickstart.R;
  *
  */
 public class MainActivity extends Activity {
-    private PHHueSDK phHueSDK;
+    /* private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
     public static final String TAG = "QuickStart";
 
@@ -38,17 +38,6 @@ public class MainActivity extends Activity {
         setTitle(R.string.app_name);
         setContentView(R.layout.activity_main);
         phHueSDK = PHHueSDK.create();
-        Button randomButton;
-        randomButton = (Button) findViewById(R.id.buttonRand);
-        randomButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                randomLights();
-            }
-
-        });
-
     }
 
     public void randomLights() {
@@ -104,4 +93,7 @@ public class MainActivity extends Activity {
             super.onDestroy();
         }
     }
+
+    */
+
 }
