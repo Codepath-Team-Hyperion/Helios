@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -15,6 +15,17 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/helios_blue</item>
+        <item name="colorPrimaryVariant">@color/helios_darkblue</item>
+        <item name="colorOnPrimary">@color/helios_white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/helios_middark</item>
+        <item name="colorSecondaryVariant">@color/helios_steelblue</item>
+        <item name="colorOnSecondary">@color/helios_black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/helios_blue</item>
+        <!-- Customize your theme here. -->
     </style>
 
 </resources>

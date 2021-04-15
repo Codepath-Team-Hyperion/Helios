@@ -20,6 +20,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_self_improvement_24"
         android:title="@string/text_profile"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
 
 </menu>

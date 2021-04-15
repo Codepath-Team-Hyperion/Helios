@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="helios_blue">#3675F4</color>
+    <color name="helios_darkblue">#142781</color>
+    <color name="helios_white">#F7F7F7</color>
+    <color name="helios_middark">#3398A5</color>
+    <color name="helios_steelblue">#C7F2FF</color>
+    <color name="helios_black">#4E4E4E</color>
+</resources>
