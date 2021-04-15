@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.philips.lighting.fragments.IndividualFragment;
 import com.philips.lighting.fragments.RandomFragment;
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -51,7 +52,7 @@ public class MyApplicationActivity extends AppCompatActivity {
 
         // define your fragments here
         final Fragment mainFragment = new RandomFragment();
-        final Fragment individualFragment = new RandomFragment();
+        final Fragment individualFragment = new IndividualFragment();
         final Fragment profileFragment = new RandomFragment();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
