@@ -40,6 +40,12 @@ Helios is a Philips Hue lighting controller and programming app designed for the
 * Selecting rooms and applying effects
 * Implement a chase feature (with timing, intensity, and color control)
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src="helios1.gif" title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 ### 2. Screen Archetypes
 
 * Login Screen
