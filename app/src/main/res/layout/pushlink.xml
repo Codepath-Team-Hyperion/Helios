@@ -10,11 +10,12 @@
         android:id="@+id/descriptionTextview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/ubuntu_bold"
         android:gravity="center_horizontal"
         android:text="@string/press_pushlink_button"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FF000000" 
-         android:layout_margin="10dp" />
+        android:textColor="#FF000000" />
 
     <ImageView
         android:id="@+id/imageView1"
