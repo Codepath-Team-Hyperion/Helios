@@ -27,18 +27,18 @@ Helios is a Philips Hue lighting controller and programming app designed for the
 
 **Required Must-have Stories**
 
-[X] Login to Hue Account or Connect to Hub
-[ ] Accessing list of lights and rooms
-[ ] Setting the intensity and color of individual lights
-[ ] Saving and recalling scenes (if useful)
+- [X] Login to Hue Account or Connect to Hub
+- [ ] Accessing list of lights and rooms
+- [ ] Setting the intensity and color of individual lights
+- [ ] Saving and recalling scenes (if useful)
 
 **Optional Nice-to-have Stories**
 
-[ ] Creating timing, color, and intensity effects that could be applied to each light
-[ ] Editing, Saving, and Recalling effects
-[ ] Selecting multiple lights and applying effects
-[ ] Selecting rooms and applying effects
-[ ] Implement a chase feature (with timing, intensity, and color control)
+- [ ] Creating timing, color, and intensity effects that could be applied to each light
+- [ ] Editing, Saving, and Recalling effects
+- [ ] Selecting multiple lights and applying effects
+- [ ] Selecting rooms and applying effects
+- [ ] Implement a chase feature (with timing, intensity, and color control)
 
 ### Video Walkthrough
 
@@ -48,44 +48,44 @@ Here's a walkthrough of implemented user stories:
 
 ### 2. Screen Archetypes
 
-[X] Login Screen
-   [X] Login to Hue Account or Connect to Hub
-[ ] Setup/Registration Screen
-   [ ] Login to Hue Account or Connect to Hub
-[ ] Stream
-   [ ] Accessing list of lights and roomsAccessing list of lights and rooms
-   [ ] Saving and recalling scenes
-   [ ] Selecting multiple lights and applying effects
-   [ ] Selecting rooms and applying effects
-[ ] Detail
-   [ ] Setting the intensity and color of individual lights
-[ ] Create Effect
-   [ ] Creating timing, color, and intensity effects that could be applied to each light
-   [ ] Editing, Saving, and Recalling effects
-[ ] Create Chase
-   [ ] Implement a chase feature (with timing, intensity, and color control)
+- [X] Login Screen
+   - [X] Login to Hue Account or Connect to Hub
+- [ ] Setup/Registration Screen
+   - [ ] Login to Hue Account or Connect to Hub
+- [ ] Stream
+   - [ ] Accessing list of lights and roomsAccessing list of lights and rooms
+   - [ ] Saving and recalling scenes
+   - [ ] Selecting multiple lights and applying effects
+   - [ ] Selecting rooms and applying effects
+- [ ] Detail
+   - [ ] Setting the intensity and color of individual lights
+- [ ] Create Effect
+   - [ ] Creating timing, color, and intensity effects that could be applied to each light
+   - [ ] Editing, Saving, and Recalling effects
+- [ ] Create Chase
+   - [ ] Implement a chase feature (with timing, intensity, and color control)
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-[x] Main Stream
-[x] Individual Stream
-[x] Profile/Preset Stream
+- [x] Main Stream
+- [x] Individual Stream
+- [x] Profile/Preset Stream
 
 **Flow Navigation** (Screen to Screen)
 
-[x] Login
+- [x] Login
    => Main
-[ ] Setup/Registration Screen
+- [ ] Setup/Registration Screen
    => Main
-[ ] Home
+- [ ] Home
    => Detail Screen
    => Create Effect
    => Create Chase
-[ ] Create Effect
+- [ ] Create Effect
    => Home (after creation complete)
-[ ] Create Chase
+- [ ] Create Chase
    => Home (after creation complete)
 
 ## Wireframes
