@@ -53,4 +53,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     implementation "androidx.recyclerview:recyclerview:${recyclerViewVersion}"
+
+    //asynchronous to handle parsing JSON files
+    implementation 'com.codepath.libraries:asynchttpclient:2.0.0'
 }
