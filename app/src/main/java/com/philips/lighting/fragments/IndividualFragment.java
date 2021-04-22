@@ -6,12 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.codepath.asynchttpclient.AsyncHttpClient;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
@@ -19,11 +22,19 @@ import com.philips.lighting.model.PHBridgeResource;
 import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
+import com.philips.lighting.models.LightBulb;
 import com.philips.lighting.quickstart.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import kotlin._Assertions;
+import okhttp3.Headers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +46,9 @@ public class IndividualFragment extends Fragment {
     private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
     public static final String TAG = "IndividualFragment";
+
+    public static final String URL = "https://192.168.1.16/api/JdB10AnH-xIL0vetG7MwgGi7QzbVbydpc9uwoGeZ";
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -96,6 +110,10 @@ public class IndividualFragment extends Fragment {
                 getLights();
             }
 
+
+
+
+
         });
 
     }
@@ -109,6 +127,45 @@ public class IndividualFragment extends Fragment {
         List<PHLight> allLights = bridge.getResourceCache().getAllLights();
         Log.i(TAG,"Getting Lights... " + allLights.toString());
 
+        //String access = "https://"+LAST_CONNECTED_IP;
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Headers headers, JSON json) {
+                Log.d(TAG,"onSuccess");
+
+            }
+
+            @Override
+            public void onFailure(int i, Headers headers, String s, Throwable throwable) {
+                Log.d(TAG,"onFailure");
+            }
+        });
+        /*public void get_json(){
+            JsonHttpResponseHandler listLights = bridge.getResourceCache().getAllLights();
+            String json;
+            InputStream is = bridge.getResourceCache().getAllLights();
+        }
+*/
+
+        //JsonHttpResponseHandler.JSON json= bridge.getResourceCache().getAllLights();
+        //JSONObject jsonObject = json.jsonObject;
+        //adding async to get info about individual lights
+        //AsyncHttpClient client = new AsyncHttpClient();
+
+        /*
+        client.get(allLights.toString(), new JsonReader() {
+            @Override
+            public void onSuccess(int i, Headers headers, JSON json) {
+                Log.d(TAG, "onSuccess");
+            }
+
+            @Override
+            public void onFailure(int i, Headers headers, String s, Throwable throwable) {
+                Log.d(TAG, "onFailure");
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+        });
+*/
         for (PHLight light : allLights) {
             PHLightState lightState = light.getLastKnownLightState();
             sat = lightState.getSaturation();
@@ -116,6 +173,11 @@ public class IndividualFragment extends Fragment {
             hue = lightState.getHue();
 
             Log.i(TAG,"Getting State... " + light.getName() + " Brightness " + bri + " Hue " + hue + " Saturation " + sat + "\n");
+            try {
+                LightBulb test = new LightBulb(light);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

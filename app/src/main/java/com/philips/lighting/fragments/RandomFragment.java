@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -98,11 +99,15 @@ public class RandomFragment extends Fragment {
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
         List<PHLight> allLights = bridge.getResourceCache().getAllLights();
+        //wonder how to display this list
         Random rand = new Random();
+
 
         for (PHLight light : allLights) {
             PHLightState lightState = new PHLightState();
             lightState.setHue(rand.nextInt(MAX_HUE));
+            //lightState.setOn(true);
+            //lightState.setHue(10000);
             // To validate your lightstate is valid (before sending to the bridge) you can use:
             // String validState = lightState.validateState();
             bridge.updateLightState(light, lightState, listener);
