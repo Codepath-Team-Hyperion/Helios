@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -49,7 +50,7 @@ public class IndividualFragment extends Fragment {
 
     public static final String URL = "https://192.168.1.16/api/JdB10AnH-xIL0vetG7MwgGi7QzbVbydpc9uwoGeZ";
 
-
+    ArrayList<LightBulb> BulbList = new ArrayList<LightBulb>();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -175,11 +176,17 @@ public class IndividualFragment extends Fragment {
             Log.i(TAG,"Getting State... " + light.getName() + " Brightness " + bri + " Hue " + hue + " Saturation " + sat + "\n");
             try {
                 LightBulb test = new LightBulb(light);
+                BulbList.add(test);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+        Log.i(TAG, "Size of Array: " + BulbList.size());
     }
+
+
+
+
 
     // If you want to handle the response from the bridge, create a PHLightListener object.
     PHLightListener listener = new PHLightListener() {
