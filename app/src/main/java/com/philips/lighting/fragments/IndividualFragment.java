@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import kotlin._Assertions;
 import okhttp3.Headers;
 
 /**
@@ -111,10 +110,6 @@ public class IndividualFragment extends Fragment {
                 getLights();
             }
 
-
-
-
-
         });
 
     }
@@ -174,6 +169,7 @@ public class IndividualFragment extends Fragment {
             hue = lightState.getHue();
 
             Log.i(TAG,"Getting State... " + light.getName() + " Brightness " + bri + " Hue " + hue + " Saturation " + sat + "\n");
+
             try {
                 LightBulb test = new LightBulb(light);
                 BulbList.add(test);
@@ -182,9 +178,17 @@ public class IndividualFragment extends Fragment {
             }
         }
         Log.i(TAG, "Size of Array: " + BulbList.size());
+
+
     }
 
 
+/*
+*       Example of turning on light
+*        PHLightState lightState = allLights.get(39).getLastKnownLightState();
+        lightState.setOn(true);
+        bridge.updateLightState(allLights.get(39), lightState);
+* */
 
 
 
