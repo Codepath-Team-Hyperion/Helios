@@ -13,19 +13,22 @@ import java.util.List;
 
 public class LightBulb {
     String nameID;
+    boolean stateOn;
     int brightness;
     int hue;
     int saturation;
     public static final String TAG = "Lightbulb.java";
 
     public LightBulb(PHLight light) throws JSONException {
+
         nameID = light.getName();
-        //
+
+        stateOn = light.getLastKnownLightState().isOn();
         brightness = light.getLastKnownLightState().getBrightness();
         //Log.i(TAG,"Creating Light objectss... " + nameID + "Brightness " +brightness);
         hue = light.getLastKnownLightState().getHue();
         saturation = light.getLastKnownLightState().getSaturation();
-        Log.i(TAG,"Creating Light objects... \n" + nameID + "\nBrightness: " +brightness + "\nhue: " + hue + "\nsaturation: " + saturation);
+        Log.i(TAG,"Creating Light objects... \n" + nameID + "\nIs light on? : " + stateOn + "\nBrightness: " +brightness + "\nhue: " + hue + "\nsaturation: " + saturation);
 
     }
 
