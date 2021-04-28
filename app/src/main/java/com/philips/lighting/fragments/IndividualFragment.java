@@ -5,16 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.philips.lighting.adapters.IndividualLightList;
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
@@ -46,10 +50,10 @@ public class IndividualFragment extends Fragment {
     private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
     public static final String TAG = "IndividualFragment";
-
     public static final String URL = "https://192.168.1.16/api/JdB10AnH-xIL0vetG7MwgGi7QzbVbydpc9uwoGeZ";
+    ArrayList<LightBulb> allLights = new ArrayList<>();
+    private IndividualLightList adapter;
 
-    ArrayList<LightBulb> BulbList = new ArrayList<LightBulb>();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -101,19 +105,33 @@ public class IndividualFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         phHueSDK = PHHueSDK.create();
+        //bridge = phHueSDK.getSelectedBridge();
         Button btnGetLights;
         btnGetLights = (Button) view.findViewById(R.id.btnGetLights);
         btnGetLights.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                getLights();
+                //getLights();
             }
 
         });
 
+        RecyclerView rvIndividual = view.findViewById(R.id.rvIndividual);
+        allLights = LightBulb.createAllLightsList();
+        adapter = new IndividualLightList(allLights);
+        rvIndividual.setAdapter(adapter);
+        rvIndividual.setLayoutManager(new LinearLayoutManager(getActivity()));
+
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        //allLights = LightBulb.createAllLightsList();
+        //adapter.notifyDataSetChanged();
+    }
+/*
     public void getLights() {
         PHBridge bridge = phHueSDK.getSelectedBridge();
         int hue = 0;
@@ -142,7 +160,7 @@ public class IndividualFragment extends Fragment {
             String json;
             InputStream is = bridge.getResourceCache().getAllLights();
         }
-*/
+
 
         //JsonHttpResponseHandler.JSON json= bridge.getResourceCache().getAllLights();
         //JSONObject jsonObject = json.jsonObject;
@@ -161,7 +179,7 @@ public class IndividualFragment extends Fragment {
                 Log.d(TAG, "onFailure");
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         });
-*/
+
         for (PHLight light : allLights) {
             PHLightState lightState = light.getLastKnownLightState();
             sat = lightState.getSaturation();
@@ -172,16 +190,16 @@ public class IndividualFragment extends Fragment {
 
             try {
                 LightBulb test = new LightBulb(light);
-                BulbList.add(test);
+                allLights.add(test);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        Log.i(TAG, "Size of Array: " + BulbList.size());
+        Log.i(TAG, "Size of Array: " + allLights.size());
 
 
     }
-
+*/
 
 /*
 *       Example of turning on light
