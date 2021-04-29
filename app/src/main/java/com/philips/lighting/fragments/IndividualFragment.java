@@ -48,7 +48,7 @@ import okhttp3.Headers;
 public class IndividualFragment extends Fragment {
 
     private PHHueSDK phHueSDK;
-    private static final int MAX_HUE=65535;
+    private static final int MAX_HUE = 65535;
     public static final String TAG = "IndividualFragment";
     public static final String URL = "https://192.168.1.16/api/JdB10AnH-xIL0vetG7MwgGi7QzbVbydpc9uwoGeZ";
     ArrayList<LightBulb> allLights = new ArrayList<>();
@@ -113,20 +113,33 @@ public class IndividualFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //getLights();
+                PHBridge bridge = phHueSDK.getSelectedBridge();
+                List<PHLight> allLights = bridge.getResourceCache().getAllLights();
             }
 
         });
 
         RecyclerView rvIndividual = view.findViewById(R.id.rvIndividual);
         allLights = LightBulb.createAllLightsList();
-        adapter = new IndividualLightList(allLights);
+        adapter = new IndividualLightList(allLights, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+
+            }
+
+            @Override
+            public void onLongClicked(int position) {
+
+            }
+        });
         rvIndividual.setAdapter(adapter);
         rvIndividual.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         //allLights = LightBulb.createAllLightsList();
         //adapter.notifyDataSetChanged();
@@ -201,12 +214,16 @@ public class IndividualFragment extends Fragment {
     }
 */
 
-/*
-*       Example of turning on light
-*        PHLightState lightState = allLights.get(39).getLastKnownLightState();
-        lightState.setOn(true);
-        bridge.updateLightState(allLights.get(39), lightState);
-* */
+//DELETE
+    //      Example of turning on light
+//    public void turnOn(PHLight light) {
+//        PHBridge bridge = phHueSDK.getSelectedBridge();
+//        PHLightState lightState = light.getLastKnownLightState();
+//        lightState.setOn(true);
+//        bridge.updateLightState(light,lightState);
+//    }
+
+
 
 
 
@@ -249,4 +266,8 @@ public class IndividualFragment extends Fragment {
         }
     }
 
+    public interface ClickListener {
+        void onPositionClicked(int position);
+        void onLongClicked(int position);
+    }
 }

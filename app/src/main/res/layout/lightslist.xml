@@ -34,7 +34,7 @@
         android:textSize="18sp"
         tools:text="label" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/lightSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
