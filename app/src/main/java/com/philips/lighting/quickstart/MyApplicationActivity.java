@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.philips.lighting.fragments.IndividualFragment;
+import com.philips.lighting.fragments.MainFragment;
 import com.philips.lighting.fragments.RandomFragment;
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -27,14 +28,6 @@ import com.philips.lighting.model.PHBridgeResource;
 import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
-
-/**
- * MyApplicationActivity - The starting point for creating your own Hue App.  
- * Currently contains a simple view with a button to change your lights to random colours.  Remove this and add your own app implementation here! Have fun!
- * 
- * @author SteveyO
- *
- */
 
 public class MyApplicationActivity extends AppCompatActivity {
     private PHHueSDK phHueSDK;
@@ -51,7 +44,7 @@ public class MyApplicationActivity extends AppCompatActivity {
         phHueSDK = PHHueSDK.create();
 
         // define your fragments here
-        final Fragment mainFragment = new RandomFragment();
+        final MainFragment mainFragment = new MainFragment();
         final Fragment individualFragment = new IndividualFragment();
         final Fragment profileFragment = new RandomFragment();
 
@@ -94,5 +87,12 @@ public class MyApplicationActivity extends AppCompatActivity {
             phHueSDK.disconnect(bridge);
             super.onDestroy();
         }
+    }
+
+    public PHHueSDK getSDK()
+    {
+        if (phHueSDK==null)
+            {phHueSDK = PHHueSDK.create();}
+        return this.phHueSDK;
     }
 }

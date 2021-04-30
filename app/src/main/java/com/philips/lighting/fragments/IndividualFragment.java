@@ -40,11 +40,6 @@ import java.util.Random;
 
 import okhttp3.Headers;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link IndividualFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class IndividualFragment extends Fragment {
 
     private PHHueSDK phHueSDK;
@@ -67,14 +62,6 @@ public class IndividualFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment IndividualFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static IndividualFragment newInstance(String param1, String param2) {
         IndividualFragment fragment = new IndividualFragment();
@@ -106,18 +93,6 @@ public class IndividualFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         phHueSDK = PHHueSDK.create();
         //bridge = phHueSDK.getSelectedBridge();
-        Button btnGetLights;
-        btnGetLights = (Button) view.findViewById(R.id.btnGetLights);
-        btnGetLights.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //getLights();
-                PHBridge bridge = phHueSDK.getSelectedBridge();
-                List<PHLight> allLights = bridge.getResourceCache().getAllLights();
-            }
-
-        });
 
         RecyclerView rvIndividual = view.findViewById(R.id.rvIndividual);
         allLights = LightBulb.createAllLightsList();
@@ -134,8 +109,6 @@ public class IndividualFragment extends Fragment {
         });
         rvIndividual.setAdapter(adapter);
         rvIndividual.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
     }
 
     @Override

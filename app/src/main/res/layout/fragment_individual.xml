@@ -1,22 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
     tools:context="com.philips.lighting.fragments.IndividualFragment">
 
-    <Button
-        android:id="@+id/btnGetLights"
-        android:layout_width="185dp"
-        android:layout_height="33dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/al1" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvIndividual"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btnGetLights"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
         android:padding="5dp" />
