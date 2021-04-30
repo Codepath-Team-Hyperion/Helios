@@ -28,7 +28,7 @@ Helios is a Philips Hue lighting controller and programming app designed for the
 **Required Must-have Stories**
 
 - [X] Login to Hue Account or Connect to Hub
-- [ ] Accessing list of lights and rooms
+- [X] Accessing list of lights and rooms
 - [ ] Setting the intensity and color of individual lights
 - [ ] Saving and recalling scenes (if useful)
 
