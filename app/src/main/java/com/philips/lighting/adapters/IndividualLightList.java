@@ -39,7 +39,9 @@ public class IndividualLightList extends RecyclerView.Adapter<IndividualLightLis
         Button btnControl;
         SwitchCompat lightSwitch;
         private WeakReference<IndividualFragment.ClickListener> listenerRef;
-        private PHHueSDK phHueSDK = PHHueSDK.create();
+        private PHHueSDK phHueSDK = PHHueSDK.getInstance();
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+
 
 
         public ViewHolder(final View itemView, IndividualFragment.ClickListener listener) {
@@ -74,15 +76,13 @@ public class IndividualLightList extends RecyclerView.Adapter<IndividualLightLis
         }
 
         public void turnOn(PHLight light) {
-            PHBridge bridge = phHueSDK.getSelectedBridge();
-            PHLightState lightState = light.getLastKnownLightState();
+            PHLightState lightState = new PHLightState();
             lightState.setOn(true);
             bridge.updateLightState(light,lightState);
         }
 
         public void turnOff(PHLight light) {
-            PHBridge bridge = phHueSDK.getSelectedBridge();
-            PHLightState lightState = light.getLastKnownLightState();
+            PHLightState lightState = new PHLightState();
             lightState.setOn(false);
             bridge.updateLightState(light,lightState);
         }

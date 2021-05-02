@@ -47,7 +47,6 @@ public class IndividualFragment extends Fragment {
     public static final String TAG = "IndividualFragment";
     public static final String URL = "https://192.168.1.16/api/JdB10AnH-xIL0vetG7MwgGi7QzbVbydpc9uwoGeZ";
     ArrayList<LightBulb> allLights = new ArrayList<>();
-    private IndividualLightList adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,31 +90,24 @@ public class IndividualFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        phHueSDK = PHHueSDK.create();
-        //bridge = phHueSDK.getSelectedBridge();
 
+        //Lookup recyclerview in activity layout
         RecyclerView rvIndividual = view.findViewById(R.id.rvIndividual);
+
+        //initialize light list
         allLights = LightBulb.createAllLightsList();
-        adapter = new IndividualLightList(allLights, new ClickListener() {
+        //Create adapter passing in the lights data
+        IndividualLightList adapter = new IndividualLightList(allLights, new ClickListener() {
             @Override
-            public void onPositionClicked(int position) {
-
-            }
+            public void onPositionClicked(int position) { }
 
             @Override
-            public void onLongClicked(int position) {
-
-            }
+            public void onLongClicked(int position) { }
         });
+        //Attach adapter to the rv to populate items
         rvIndividual.setAdapter(adapter);
+        //Set layout manager to position the items
         rvIndividual.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        //allLights = LightBulb.createAllLightsList();
-        //adapter.notifyDataSetChanged();
     }
 /*
     public void getLights() {
@@ -224,20 +216,6 @@ public class IndividualFragment extends Fragment {
         @Override
         public void onSearchComplete() {}
     };
-
-    @Override
-    public void onDestroy() {
-        PHBridge bridge = phHueSDK.getSelectedBridge();
-        if (bridge != null) {
-
-            if (phHueSDK.isHeartbeatEnabled(bridge)) {
-                phHueSDK.disableHeartbeat(bridge);
-            }
-
-            phHueSDK.disconnect(bridge);
-            super.onDestroy();
-        }
-    }
 
     public interface ClickListener {
         void onPositionClicked(int position);

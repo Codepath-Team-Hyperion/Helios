@@ -6,6 +6,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
+import com.philips.lighting.model.PHGroup;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
 
@@ -39,10 +40,30 @@ public class LightBulb {
             brightness = light.getLastKnownLightState().getBrightness();
             hue = light.getLastKnownLightState().getHue();
             saturation = light.getLastKnownLightState().getSaturation();
-            group = "grpName";
+            group = getGroupName(light.getIdentifier());
 
 
             Log.i(TAG, "Creating Light objects... \n" + nameID + "\nIs light on? : " + stateOn + "\nBrightness: " + brightness + "\nhue: " + hue + "\nsaturation: " + saturation + bridge.getResourceCache().getAllGroups().toString());
+
+    }
+
+    private String getGroupName(String lightID) {
+        List<PHGroup>allGroups = bridge.getResourceCache().getAllGroups();
+        String groupName;
+
+        for (PHGroup group: allGroups){
+            List<String> groupLights = group.getLightIdentifiers();
+            for (String light: groupLights){
+                if (light.equals(lightID)){
+                    groupName = "(" + group.getName() + ")";
+                    return groupName;
+                }
+            }
+
+        }
+
+        return "-";
+
 
     }
 

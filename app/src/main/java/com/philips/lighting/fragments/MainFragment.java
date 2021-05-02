@@ -17,6 +17,8 @@ import com.philips.lighting.adapters.GroupsAdapter;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHGroup;
+import com.philips.lighting.model.PHLight;
+import com.philips.lighting.model.PHLightState;
 import com.philips.lighting.quickstart.MyApplicationActivity;
 import com.philips.lighting.quickstart.R;
 
@@ -35,6 +37,9 @@ public class MainFragment extends Fragment {
     private PHHueSDK phHueSDK;
     private PHBridge bridge;
     List<PHGroup> groups;
+    List<PHLight> allLights;
+    private static final int MAX_HUE = 65535;
+    public static final String TAG = "MainFragment";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,15 +97,17 @@ public class MainFragment extends Fragment {
         RecyclerView rvGroups = view.findViewById(R.id.rvGroups);
 
         //initialize groups
-        phHueSDK = ((MyApplicationActivity)this.getActivity()).getSDK();
+        phHueSDK = PHHueSDK.getInstance();
         bridge = phHueSDK.getSelectedBridge();
         groups = bridge.getResourceCache().getAllGroups();
+        allLights = bridge.getResourceCache().getAllLights();
         //Create adapter passing in the sample group data
-        GroupsAdapter adapter = new GroupsAdapter(groups);
+        GroupsAdapter adapter = new GroupsAdapter(groups, allLights);
         //Attach the adapter to the recyclerview to populate items
         rvGroups.setAdapter(adapter);
-        //Set layout Manager to postion the items
+        //Set layout Manager to position the items
         rvGroups.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
     }
 }
 
