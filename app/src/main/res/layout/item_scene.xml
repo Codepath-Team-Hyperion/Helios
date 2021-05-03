@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
+
+
+    <Button
+        android:id="@+id/btnScene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/activate" />
+
+    <TextView
+        android:id="@+id/tvScene"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/btnScene"
+        android:layout_alignBottom="@id/btnScene"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/btnScene"
+        android:padding="8dp"
+        android:textAlignment="gravity"
+        android:textSize="18sp"
+        tools:text="Scene Name" />
+</RelativeLayout>

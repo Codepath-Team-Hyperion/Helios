@@ -11,46 +11,38 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.philips.lighting.adapters.GroupsAdapter;
+import com.philips.lighting.adapters.ScenesAdapter;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHGroup;
-import com.philips.lighting.model.PHLight;
-import com.philips.lighting.model.PHLightState;
-import com.philips.lighting.quickstart.MyApplicationActivity;
+import com.philips.lighting.model.PHScene;
 import com.philips.lighting.quickstart.R;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MainFragment#newInstance} factory method to
+ * Use the {@link SceneFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment {
+public class SceneFragment extends Fragment {
 
     private PHHueSDK phHueSDK;
     private PHBridge bridge;
-    List<PHGroup> groups;
-    List<PHLight> allLights;
-    private static final int MAX_HUE = 65535;
-    public static final String TAG = "MainFragment";
+    List<PHScene> scenes;
+    public static final String TAG = "SceneFragment";
 
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
-    public MainFragment() {
+    public SceneFragment() {
         // Required empty public constructor
     }
 
@@ -60,13 +52,13 @@ public class MainFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
+     * @return A new instance of fragment SceneFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(Serializable param1, String param2) {
-        MainFragment fragment = new MainFragment();
+
+    public static SceneFragment newInstance(String param1, String param2) {
+        SceneFragment fragment = new SceneFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -85,28 +77,25 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_scene, container, false);
     }
 
-
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
         //Lookup the recyclerview in activity layout
-        RecyclerView rvGroups = view.findViewById(R.id.rvGroups);
+        RecyclerView rvScenes = view.findViewById(R.id.rvScenes);
 
-        //initialize groups
+        //Initialize scenes
         phHueSDK = PHHueSDK.getInstance();
         bridge = phHueSDK.getSelectedBridge();
-        groups = bridge.getResourceCache().getAllGroups();
-        allLights = bridge.getResourceCache().getAllLights();
-        //Create adapter passing in the sample group data
-        GroupsAdapter adapter = new GroupsAdapter(groups, allLights);
+        scenes = bridge.getResourceCache().getAllScenes();
+        //Create adapter passing in the sample scene data
+        ScenesAdapter adapter = new ScenesAdapter(scenes);
         //Attach the adapter to the recyclerview to populate items
-        rvGroups.setAdapter(adapter);
+        rvScenes.setAdapter(adapter);
         //Set layout Manager to position the items
-        rvGroups.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        rvScenes.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 }
-

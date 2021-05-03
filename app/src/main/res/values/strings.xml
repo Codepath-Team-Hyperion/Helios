@@ -30,8 +30,9 @@
     <string name="txt_last_heartbeat">Last Heartbeat : </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="text_main">Main</string>
+    <string name="text_main">Groups</string>
     <string name="text_individual">Individual</string>
-    <string name="text_profile">Profile</string>
+    <string name="text_profile">Scenes</string>
     <string name="get_lights">Get Lights</string>
+    <string name="activate">Activate</string>
 </resources>
