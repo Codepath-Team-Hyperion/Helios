@@ -22,7 +22,7 @@
         android:layout_marginEnd="15dp"
         android:fontFamily="@font/ubuntu_bold"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         tools:text="Light Name" />
 
@@ -36,7 +36,7 @@
         android:layout_toStartOf="@+id/lightSwitch"
         android:fontFamily="@font/ubuntu"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         tools:text="label" />
 
     <androidx.appcompat.widget.SwitchCompat
