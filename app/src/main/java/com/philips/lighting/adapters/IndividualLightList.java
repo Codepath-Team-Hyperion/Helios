@@ -1,6 +1,8 @@
 package com.philips.lighting.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.philips.lighting.fragments.DetailFragment;
 import com.philips.lighting.fragments.IndividualFragment;
+import com.philips.lighting.fragments.RandomFragment;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHLight;
@@ -32,7 +38,7 @@ public class IndividualLightList extends RecyclerView.Adapter<IndividualLightLis
     private static String TAG = "adapter";
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener, CompoundButton.OnCheckedChangeListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
         TextView tvlightName;
         TextView tvLabel;
@@ -49,30 +55,30 @@ public class IndividualLightList extends RecyclerView.Adapter<IndividualLightLis
 
             listenerRef = new WeakReference<>(listener);
 
-            tvlightName = (TextView) itemView.findViewById(R.id.tvlightName);
-            tvLabel = (TextView) itemView.findViewById(R.id.tvLabel);
+            tvlightName = itemView.findViewById(R.id.tvlightName);
+            tvLabel = itemView.findViewById(R.id.tvLabel);
             btnControl = itemView.findViewById(R.id.btnControl);
             lightSwitch = itemView.findViewById(R.id.lightSwitch);
 
-            lightSwitch.setOnClickListener(this);
+            //lightSwitch.setOnClickListener(this);
             lightSwitch.setOnCheckedChangeListener(this);
+            btnControl.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View v) {
             if (v.getId() == lightSwitch.getId()){
-                Toast.makeText(v.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "ITEM PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "Click");
+                Toast.makeText(v.getContext(), "ROW PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
+                DetailFragment detailFrag = DetailFragment.newInstance(getAdapterPosition());
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frgContainer, detailFrag).addToBackStack(null).commit();
             }
             listenerRef.get().onPositionClicked(getAdapterPosition());
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            return false;
         }
 
         public void turnOn(PHLight light) {
@@ -144,7 +150,4 @@ public class IndividualLightList extends RecyclerView.Adapter<IndividualLightLis
     public int getItemCount() {
         return allLights.size();
     }
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.philips.lighting.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,12 +49,10 @@ public class IndividualFragment extends Fragment {
     public static final String URL = "https://192.168.1.16/api/JdB10AnH-xIL0vetG7MwgGi7QzbVbydpc9uwoGeZ";
     ArrayList<LightBulb> allLights = new ArrayList<>();
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -61,7 +60,6 @@ public class IndividualFragment extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static IndividualFragment newInstance(String param1, String param2) {
         IndividualFragment fragment = new IndividualFragment();
         Bundle args = new Bundle();
@@ -103,94 +101,20 @@ public class IndividualFragment extends Fragment {
 
             @Override
             public void onLongClicked(int position) { }
+
+           /* public void onClick(){
+                RandomFragment randomFragment = new RandomFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frgContainer, randomFragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }*/
         });
         //Attach adapter to the rv to populate items
         rvIndividual.setAdapter(adapter);
         //Set layout manager to position the items
         rvIndividual.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
-/*
-    public void getLights() {
-        PHBridge bridge = phHueSDK.getSelectedBridge();
-        int hue = 0;
-        int bri = 0;
-        int sat = 0;
-
-        List<PHLight> allLights = bridge.getResourceCache().getAllLights();
-        Log.i(TAG,"Getting Lights... " + allLights.toString());
-
-        //String access = "https://"+LAST_CONNECTED_IP;
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(URL, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int i, Headers headers, JSON json) {
-                Log.d(TAG,"onSuccess");
-
-            }
-
-            @Override
-            public void onFailure(int i, Headers headers, String s, Throwable throwable) {
-                Log.d(TAG,"onFailure");
-            }
-        });
-        /*public void get_json(){
-            JsonHttpResponseHandler listLights = bridge.getResourceCache().getAllLights();
-            String json;
-            InputStream is = bridge.getResourceCache().getAllLights();
-        }
-
-
-        //JsonHttpResponseHandler.JSON json= bridge.getResourceCache().getAllLights();
-        //JSONObject jsonObject = json.jsonObject;
-        //adding async to get info about individual lights
-        //AsyncHttpClient client = new AsyncHttpClient();
-
-        /*
-        client.get(allLights.toString(), new JsonReader() {
-            @Override
-            public void onSuccess(int i, Headers headers, JSON json) {
-                Log.d(TAG, "onSuccess");
-            }
-
-            @Override
-            public void onFailure(int i, Headers headers, String s, Throwable throwable) {
-                Log.d(TAG, "onFailure");
-            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-        });
-
-        for (PHLight light : allLights) {
-            PHLightState lightState = light.getLastKnownLightState();
-            sat = lightState.getSaturation();
-            bri = lightState.getBrightness();
-            hue = lightState.getHue();
-
-            Log.i(TAG,"Getting State... " + light.getName() + " Brightness " + bri + " Hue " + hue + " Saturation " + sat + "\n");
-
-            try {
-                LightBulb test = new LightBulb(light);
-                allLights.add(test);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        Log.i(TAG, "Size of Array: " + allLights.size());
-
-
-    }
-*/
-
-//DELETE
-    //      Example of turning on light
-//    public void turnOn(PHLight light) {
-//        PHBridge bridge = phHueSDK.getSelectedBridge();
-//        PHLightState lightState = light.getLastKnownLightState();
-//        lightState.setOn(true);
-//        bridge.updateLightState(light,lightState);
-//    }
-
-
-
-
 
     // If you want to handle the response from the bridge, create a PHLightListener object.
     PHLightListener listener = new PHLightListener() {

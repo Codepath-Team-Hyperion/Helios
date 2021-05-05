@@ -1,0 +1,167 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context="com.philips.lighting.fragments.DetailFragment">
+
+    <TextView
+        android:id="@+id/tvLightName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30sp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        tools:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:id="@+id/tvLabelBrightness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLightName"
+        android:text="@string/brightness"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tvBrightness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLightName"
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="@string/seekVal" />
+
+    <SeekBar
+        android:id="@+id/skBrightness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBrightness"
+        android:paddingTop="8dp"
+        android:paddingBottom="40dp"
+        />
+
+    <TextView
+        android:id="@+id/tvLabelRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/skBrightness"
+        android:text="@string/red"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tvRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/skBrightness"
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="@string/seekVal" />
+
+    <SeekBar
+        android:id="@+id/skRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLabelRed"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tvLabelGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/skRed"
+        android:text="@string/green"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tvGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/skRed"
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="@string/seekVal" />
+
+    <SeekBar
+        android:id="@+id/skGreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLabelGreen"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tvLabelBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/skGreen"
+        android:text="@string/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tvBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/skGreen"
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="@string/seekVal" />
+
+    <SeekBar
+        android:id="@+id/skBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLabelBlue"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        />
+
+
+
+</RelativeLayout>

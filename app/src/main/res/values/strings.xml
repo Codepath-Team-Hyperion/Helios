@@ -35,4 +35,9 @@
     <string name="text_profile">Scenes</string>
     <string name="get_lights">Get Lights</string>
     <string name="activate">Activate</string>
+    <string name="seekVal">255</string>
+    <string name="brightness">Brightness</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
 </resources>
