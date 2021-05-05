@@ -24,14 +24,13 @@ import com.philips.lighting.quickstart.R;
 
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DetailFragment extends Fragment {
 
-    public TextView tvBlank;
+    private PHHueSDK phHueSDK;
+    private PHBridge bridge;
+    private PHLight light;
+    private PHLightState lightState;
+    public TextView tvLightName;
     public TextView tvBrightness;
     public TextView tvRed;
     public TextView tvGreen;
@@ -42,6 +41,9 @@ public class DetailFragment extends Fragment {
     public SeekBar skBlue;
     public static final String TAG = "DetailFragment";
     private static final int MAX_HUE=65535;
+    private int red;
+    private int green;
+    private int blue;
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String LIGHT_POSITION = "param1";
@@ -67,6 +69,20 @@ public class DetailFragment extends Fragment {
         if (getArguments() != null) {
             position = getArguments().getInt(LIGHT_POSITION);
         }
+        phHueSDK = PHHueSDK.getInstance();
+        bridge = phHueSDK.getSelectedBridge();
+        light = bridge.getResourceCache().getAllLights().get(position);
+        lightState = light.getLastKnownLightState();
+
+        //Get colour information
+        float hue = (lightState.getHue() / (float)MAX_HUE);
+        float saturation = (lightState.getSaturation()/256f);
+        float value = (lightState.getBrightness()/256f);
+        String rgbColour = hsvToRgb(hue ,saturation, value);
+        String[] rgbColArray = rgbColour.split(",");
+        red = Integer.parseInt(rgbColArray[0]);
+        green = Integer.parseInt(rgbColArray[1]);
+        blue = Integer.parseInt(rgbColArray[2]);
     }
 
     @Override
@@ -79,30 +95,17 @@ public class DetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        PHHueSDK phHueSDK = PHHueSDK.getInstance();
-        PHBridge bridge = phHueSDK.getSelectedBridge();
-        PHLight light = bridge.getResourceCache().getAllLights().get(position);
-        PHLightState lightState = light.getLastKnownLightState();
 
-
-        tvBlank = view.findViewById(R.id.tvLightName);
-
+        tvLightName = view.findViewById(R.id.tvLightName);
         tvBrightness = view.findViewById(R.id.tvBrightness);
         skBrightness = view.findViewById(R.id.skBrightness);
-
         tvRed = view.findViewById(R.id.tvRed);
         skRed = view.findViewById(R.id.skRed);
-
         tvGreen = view.findViewById(R.id.tvGreen);
         skGreen = view.findViewById(R.id.skGreen);
-
         tvBlue = view.findViewById(R.id.tvBlue);
         skBlue = view.findViewById(R.id.skBlue);
 
-        tvBlank.setText(light.getName());
-
-        tvBrightness.setText(String.format(Locale.getDefault(),"%d",lightState.getBrightness()));
-        skBrightness.setProgress(lightState.getBrightness());
         skBrightness.setMin(1);
         skBrightness.setMax(254);
         skBrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -113,7 +116,6 @@ public class DetailFragment extends Fragment {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
@@ -122,51 +124,37 @@ public class DetailFragment extends Fragment {
                 String validState = lightState.validateState();
                 Log.i(TAG, "Brightness Error " + validState);
                 bridge.updateLightState(light,lightState);
+                refreshLightDetails();
             }
         });
 
-        //Get colour information
-        float hue = (lightState.getHue() / (float)MAX_HUE);
-        float saturation = (lightState.getSaturation()/256f);
-        float value = (lightState.getBrightness()/256f);
-        String rgbColour = hsvToRgb(hue ,saturation, value);
-        String[] rgbColArray = rgbColour.split(",");
-
-        tvRed.setText(rgbColArray[0]);
-        skRed.setProgress(Integer.parseInt(rgbColArray[0]));
         skRed.setMin(0);
         skRed.setMax(255);
         skRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tvRed.setText(String.format(Locale.getDefault(),"%d",progress));
+                red = progress;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                rgbColArray[0] = String.valueOf(skRed.getProgress());
-                float[] xy = PHUtilities.calculateXYFromRGB(Integer.parseInt(rgbColArray[0]), Integer.parseInt(rgbColArray[1]), Integer.parseInt(rgbColArray[2]), light.getModelNumber());
-                lightState.setX(xy[0]);
-                lightState.setY(xy[1]);
-                String validState = lightState.validateState();
-                Log.i(TAG, "Red Error " + validState);
-                bridge.updateLightState(light,lightState);
+                updateLightColor("Red");
+                refreshLightDetails();
             }
         });
 
-        tvGreen.setText(rgbColArray[1]);
-        skGreen.setProgress(Integer.parseInt(rgbColArray[1]));
         skGreen.setMin(0);
         skGreen.setMax(255);
         skGreen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tvGreen.setText(String.format(Locale.getDefault(),"%d",progress));
+                green = progress;
             }
 
             @Override
@@ -176,24 +164,18 @@ public class DetailFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                rgbColArray[1] = String.valueOf(skGreen.getProgress());
-                float[] xy = PHUtilities.calculateXYFromRGB(Integer.parseInt(rgbColArray[0]), Integer.parseInt(rgbColArray[1]), Integer.parseInt(rgbColArray[2]), light.getModelNumber());
-                lightState.setX(xy[0]);
-                lightState.setY(xy[1]);
-                String validState = lightState.validateState();
-                Log.i(TAG, "Green Error " + validState);
-                bridge.updateLightState(light,lightState);
+                updateLightColor("Green");
+                refreshLightDetails();
             }
         });
 
-        tvBlue.setText(rgbColArray[2]);
-        skBlue.setProgress(Integer.parseInt(rgbColArray[2]));
         skBlue.setMin(0);
         skBlue.setMax(255);
         skBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tvBlue.setText(String.format(Locale.getDefault(),"%d",progress));
+                blue = progress;
             }
 
             @Override
@@ -203,15 +185,36 @@ public class DetailFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                rgbColArray[2] = String.valueOf(skBlue.getProgress());
-                float[] xy = PHUtilities.calculateXYFromRGB(Integer.parseInt(rgbColArray[0]), Integer.parseInt(rgbColArray[1]), Integer.parseInt(rgbColArray[2]), light.getModelNumber());
-                lightState.setX(xy[0]);
-                lightState.setY(xy[1]);
-                String validState = lightState.validateState();
-                Log.i(TAG, "Blue Error " + validState);
-                bridge.updateLightState(light,lightState);
+                updateLightColor("Blue");
+                refreshLightDetails();
             }
         });
+
+        refreshLightDetails();
+    }
+
+    private void updateLightColor(String color) {
+        float[] xy = PHUtilities.calculateXYFromRGB(red, green, blue, light.getModelNumber());
+        lightState.setX(xy[0]);
+        lightState.setY(xy[1]);
+        String validState = lightState.validateState();
+        Log.i(TAG, color + " Error " + validState);
+        bridge.updateLightState(light,lightState);
+    }
+
+    private void refreshLightDetails() {
+        tvLightName.setText(light.getName());
+        tvBrightness.setText(String.format(Locale.getDefault(),"%d",lightState.getBrightness()));
+        skBrightness.setProgress(lightState.getBrightness());
+
+        tvRed.setText(String.format(Locale.getDefault(),"%d", red));
+        skRed.setProgress(red);
+
+        tvGreen.setText(String.format(Locale.getDefault(),"%d",green));
+        skGreen.setProgress(green);
+
+        tvBlue.setText(String.format(Locale.getDefault(),"%d",blue));
+        skBlue.setProgress(blue);
     }
 
     public static String hsvToRgb(float hue, float saturation, float value) {
