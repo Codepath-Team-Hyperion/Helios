@@ -136,7 +136,7 @@ public class IndividualLightList extends RecyclerView.Adapter<IndividualLightLis
         tvlabel.setText(lightBulb.getLabel());
 
         Button buttonControl = holder.btnControl;
-        buttonControl.setEnabled(lightBulb.stateOn());
+        buttonControl.setEnabled(true);
 
         SwitchCompat lightSwitch = holder.lightSwitch;
         if (lightBulb.stateOn())

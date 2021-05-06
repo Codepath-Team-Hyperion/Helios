@@ -102,13 +102,6 @@ public class IndividualFragment extends Fragment {
             @Override
             public void onLongClicked(int position) { }
 
-           /* public void onClick(){
-                RandomFragment randomFragment = new RandomFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frgContainer, randomFragment, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
-            }*/
         });
         //Attach adapter to the rv to populate items
         rvIndividual.setAdapter(adapter);

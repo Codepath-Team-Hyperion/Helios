@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -111,7 +112,7 @@ public class DetailFragment extends Fragment {
         skBrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvBrightness.setText(String.format(Locale.getDefault(),"%d",progress));
+                tvBrightness.setText(String.format(Locale.getDefault(),"%d%s",Math.round(((progress-1)/253f)*100), "%"));
             }
 
             @Override
@@ -133,7 +134,7 @@ public class DetailFragment extends Fragment {
         skRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvRed.setText(String.format(Locale.getDefault(),"%d",progress));
+                tvRed.setText(String.format(Locale.getDefault(),"%d%s",Math.round((progress/255f)*100),"%"));
                 red = progress;
             }
 
@@ -153,7 +154,7 @@ public class DetailFragment extends Fragment {
         skGreen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvGreen.setText(String.format(Locale.getDefault(),"%d",progress));
+                tvGreen.setText(String.format(Locale.getDefault(),"%d%s",Math.round((progress/255f)*100),"%"));
                 green = progress;
             }
 
@@ -174,7 +175,7 @@ public class DetailFragment extends Fragment {
         skBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvBlue.setText(String.format(Locale.getDefault(),"%d",progress));
+                tvBlue.setText(String.format(Locale.getDefault(),"%d%s",Math.round((progress/255f)*100),"%"));
                 blue = progress;
             }
 
@@ -190,6 +191,7 @@ public class DetailFragment extends Fragment {
             }
         });
 
+        updateLightColor("RGB");
         refreshLightDetails();
     }
 
@@ -204,16 +206,16 @@ public class DetailFragment extends Fragment {
 
     private void refreshLightDetails() {
         tvLightName.setText(light.getName());
-        tvBrightness.setText(String.format(Locale.getDefault(),"%d",lightState.getBrightness()));
+        tvBrightness.setText(String.format(Locale.getDefault(),"%d%s",Math.round(((lightState.getBrightness() -1)/253f)*100 ),"%"));
         skBrightness.setProgress(lightState.getBrightness());
 
-        tvRed.setText(String.format(Locale.getDefault(),"%d", red));
+        tvRed.setText(String.format(Locale.getDefault(),"%d%s", Math.round((red/255f)*100),"%"));
         skRed.setProgress(red);
 
-        tvGreen.setText(String.format(Locale.getDefault(),"%d",green));
+        tvGreen.setText(String.format(Locale.getDefault(),"%d%s",Math.round((green/255f)*100),"%"));
         skGreen.setProgress(green);
 
-        tvBlue.setText(String.format(Locale.getDefault(),"%d",blue));
+        tvBlue.setText(String.format(Locale.getDefault(),"%d%s",Math.round((blue/255f)*100),"%"));
         skBlue.setProgress(blue);
     }
 
@@ -242,4 +244,7 @@ public class DetailFragment extends Fragment {
         String bs = Integer.toString((int)(b * 256));
         return rs + "," + gs + "," + bs;
     }
+
+
+
 }
