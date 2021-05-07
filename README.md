@@ -29,16 +29,7 @@ Helios is a Philips Hue lighting controller and programming app designed for the
 
 - [X] Login to Hue Account or Connect to Hub
 - [X] Accessing list of lights and rooms
-- [ ] Setting the intensity and color of individual lights
-- [ ] Saving and recalling scenes (if useful)
-
-**Optional Nice-to-have Stories**
-
-- [ ] Creating timing, color, and intensity effects that could be applied to each light
-- [ ] Editing, Saving, and Recalling effects
-- [ ] Selecting multiple lights and applying effects
-- [ ] Selecting rooms and applying effects
-- [ ] Implement a chase feature (with timing, intensity, and color control)
+- [X] Setting the intensity and color of individual lights
 
 ### Video Walkthrough
 
@@ -50,20 +41,12 @@ Here's a walkthrough of implemented user stories:
 
 - [X] Login Screen
    - [X] Login to Hue Account or Connect to Hub
-- [ ] Setup/Registration Screen
-   - [ ] Login to Hue Account or Connect to Hub
-- [ ] Stream
-   - [ ] Accessing list of lights and roomsAccessing list of lights and rooms
-   - [ ] Saving and recalling scenes
-   - [ ] Selecting multiple lights and applying effects
-   - [ ] Selecting rooms and applying effects
-- [ ] Detail
-   - [ ] Setting the intensity and color of individual lights
-- [ ] Create Effect
-   - [ ] Creating timing, color, and intensity effects that could be applied to each light
-   - [ ] Editing, Saving, and Recalling effects
-- [ ] Create Chase
-   - [ ] Implement a chase feature (with timing, intensity, and color control)
+- [X] Stream
+   - [X] Accessing list of lights and rooms
+   - [X] Selecting multiple lights and applying effects
+   - [X] Selecting rooms and applying effects
+- [X] Detail
+   - [X] Setting the intensity and color of individual lights
 
 ### 3. Navigation
 
@@ -77,16 +60,8 @@ Here's a walkthrough of implemented user stories:
 
 - [x] Login
    => Main
-- [ ] Setup/Registration Screen
-   => Main
-- [ ] Home
+- [X] Home
    => Detail Screen
-   => Create Effect
-   => Create Chase
-- [ ] Create Effect
-   => Home (after creation complete)
-- [ ] Create Chase
-   => Home (after creation complete)
 
 ## Wireframes
 <img src="https://github.com/Codepath-Team-Hyperion/Helios/blob/9194fff8b964bcecb6a5e94d1e35401d950cada6/wireframe.png" width=600>
