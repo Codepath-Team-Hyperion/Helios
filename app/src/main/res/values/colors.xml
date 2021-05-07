@@ -4,6 +4,10 @@
     <color name="helios_darkblue">#142781</color>
     <color name="helios_white">#F7F7F7</color>
     <color name="helios_middark">#3398A5</color>
-    <color name="helios_steelblue">#C7F2FF</color>
-    <color name="helios_black">#4E4E4E</color>
+    <color name="helios_steelblue">#008C95</color>
+    <color name="helios_black">#000000</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorGradientStart">#0079B5</color>
+    <color name="colorGradientEnd">#80D0C7</color>
+    <color name="colorGradientCenter">#177990</color>
 </resources>

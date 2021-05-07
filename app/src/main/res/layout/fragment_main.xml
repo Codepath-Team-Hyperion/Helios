@@ -2,11 +2,28 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
+    android:background="@drawable/bg2"
     android:layout_height="wrap_content"
     tools:context="com.philips.lighting.fragments.MainFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGroups"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="GROUPS"
+        android:textColor="#CFCFCF"
+        android:textSize="34sp" />
 </RelativeLayout>

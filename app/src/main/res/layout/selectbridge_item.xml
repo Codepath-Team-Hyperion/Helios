@@ -9,7 +9,12 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/cardview_shadow_start_color" />
+        android:background="@drawable/back" />
+
+    <View
+        android:id="@+id/view8"
+        android:layout_width="match_parent"
+        android:layout_height="65dp" />
 
     <TextView
         android:id="@+id/bridge_mac"

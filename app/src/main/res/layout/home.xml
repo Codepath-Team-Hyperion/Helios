@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="10dp"
+	android:background="@drawable/bg2"
     android:paddingRight="10dp"
     android:theme="@android:style/Theme.Dialog"
     android:id="@+id/linear1"
     android:minWidth="300dp" >
+
 
 
     <TextView
@@ -23,8 +25,9 @@
 		android:id="@+id/bridge_list"
 		android:layout_width="fill_parent"
 		android:layout_height="663dp"
+		android:layout_alignParentTop="true"
 		android:layout_marginLeft="2dip"
-		android:layout_marginTop="3dip"
+		android:layout_marginTop="3dp"
 		android:layout_marginRight="2dip"
 		android:layout_weight="1"
 		android:cacheColorHint="#00000000"
@@ -34,4 +37,4 @@
 
 	</ListView>
 
-</LinearLayout>
+</RelativeLayout>
